@@ -100,7 +100,7 @@ body {
 }
 
 select,
-#cSubmitButton {
+input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
