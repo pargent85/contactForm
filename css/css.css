@@ -100,7 +100,7 @@ body {
 }
 
 select,
-input[type="submit"] {
+#cSubmitButton {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
