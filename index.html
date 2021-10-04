@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="css/css.css">
+    <script type="text/javascript" src="js/js.js"></script>
+</head>
+
+<body>
+    <div id="btnWrap">
+        <button id="cContact" class="cButton" onclick="contactFunction()">CONTACT US</button>
+        <button id="cProduct" class="cButton" onclick="productFunction()">SUGGEST A PRODUCT</button>
+    </div>
+    <div id="formContact">
+        <div id="cHead">
+            <h1 id="cHeadText">Contact Us</h1>
+            <a id="cBack" class="cLink" onclick="backFunction()">Back</a>
+        </div>
+        <form class="cWrap" name="contactForm" novalidate="novalidate" onsubmit="return validateForm(this)" method="POST">
+            <div id="cNameWrap" class="cWrap">
+                <input id="cNameText" class="cText" type="text" placeholder="Name" name="cName" onkeyup="keyupFunction(event, this, 'cName')" onblur="onblurFunction(this, 'cName')" />
+                <label for="cNameText" id="cNameLabel" class="cLabel">Full Name</label>
+                <p id="cNameCheck" class="successCheck">&#10003;</p>
+                <p id="cNameWarning" class="warningIcon">&#9888;</p>
+                <p id="cNameError" class="errorText">Please enter your full name.</p>
+            </div>
+            <div id="cEmailWrap" class="cWrap">
+                <input id="cEmailText" class="cEmail" type="email" placeholder="Email Address" name="cEmail" onkeyup="keyupFunction(event, this, 'cEmail')" onblur="onblurFunction(this, 'cEmail')" />
+                <label for="cEmailText" id="cNameLabel" class="cLabel">Email Address</label>
+                <p id="cEmailCheck" class="successCheck">&#10003;</p>
+                <p id="cEmailWarning" class="warningIcon">&#9888;</p>
+                <p id="cEmailError" class="errorText">Please enter a valid email address.</p>
+            </div>
+            <div id="cQuestionWrap" class="cWrap">
+                <select id="cQuestionSelect" class="cSelect" onchange="selectChange(this)" onblur="onblurFunction(this, 'cQuestion')" placeholder="Contact Reason" name="cQuestion">
+                    <option disabled selected>Please Choose</option>
+                    <option value="1">Order Question</option>
+                    <option value="2">Website Feedback</option>
+                    <option value="3">Trouble Finding Product</option>
+                </select>
+                <label for="cQuestionText" id="cNameLabel" class="cLabel">Contact Reason</label>
+                <p id="cQuestionCheck" class="successCheck">&#10003;</p>
+                <p id="cQuestionWarning" class="warningIcon">&#9888;</p>
+                <p id="cQuestionError" class="errorText">Please select your reason for contact.</p>
+            </div>
+            <div id="cSuggestWrap" class="cWrap">
+                <textarea id="cSuggestText" class="cTextarea" placeholder="Description of Product" maxlength="250" name="cSuggest" onkeyup="keyupFunction(event, this, 'cSuggest')" onblur="onblurFunction(this, 'cSuggest')"></textarea>
+                <label for="cSuggestText" id="cSuggestLabel" class="cLabel">Description of Product</label>
+                <p id="cSuggestCheck" class="successCheck">&#10003;</p>
+                <p id="cSuggestWarning" class="warningIcon">&#9888;</p>
+                <p id="cSuggestError" class="errorText">Please enter the description of the product.</p>
+            </div>
+            <div id="cFeedbackWrap" class="cWrap">
+                <textarea id="cFeedbackText" class="cTextarea" placeholder="Feedback" maxlength="250" name="cFeedback" onkeyup="keyupFunction(event, this, 'cFeedback')" onblur="onblurFunction(this, 'cFeedback')"></textarea>
+                <label for="cFeedbackText" id="cFeedbackLabel" class="cLabel">Feedback</label>
+                <p id="cFeedbackCheck" class="successCheck">&#10003;</p>
+                <p id="cFeedbackWarning" class="warningIcon">&#9888;</p>
+                <p id="cFeedbackError" class="errorText">Please enter your response in the text area.</p>
+            </div>
+            <div id="cSubmitWrap" class="cWrap">
+                <input type="submit" value="SUBMIT" id="cSubmitButton" class="cButton" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
