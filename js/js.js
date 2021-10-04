@@ -59,54 +59,34 @@ function keyupFunction(e, target, name) {
     if (e.keyCode === 9) {
         return;
     }
-    var warning = name + 'Warning';
-    var check = name + 'Check';
-    var error = name + 'Error';
-    if (target.value !== '') {
-        if (name.toLowerCase() === 'cemail') {
-            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (re.test(String(target.value).toLowerCase())) {
+    if (target.classList.contains('error')) {
+        var warning = name + 'Warning';
+        var check = name + 'Check';
+        var error = name + 'Error';
+        if (target.value !== '') {
+            if (name.toLowerCase() === 'cemail') {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (re.test(String(target.value).toLowerCase())) {
+                    target.classList.remove('error');
+                    target.classList.add('success');
+                    document.getElementById(warning).style.display = 'none';
+                    document.getElementById(check).style.display = 'block';
+                    document.getElementById(error).style.display = 'none';
+                } else {
+                    target.classList.remove('success');
+                    target.classList.add('error');
+                    document.getElementById(check).style.display = 'none';
+                    document.getElementById(warning).style.display = 'block';
+                    document.getElementById(error).style.display = 'block';
+                }
+            } else {
                 target.classList.remove('error');
                 target.classList.add('success');
                 document.getElementById(warning).style.display = 'none';
                 document.getElementById(check).style.display = 'block';
                 document.getElementById(error).style.display = 'none';
-            } else {
-                target.classList.remove('success');
-                target.classList.add('error');
-                document.getElementById(check).style.display = 'none';
-                document.getElementById(warning).style.display = 'block';
-                document.getElementById(error).style.display = 'block';
             }
         } else {
-            target.classList.remove('error');
-            target.classList.add('success');
-            document.getElementById(warning).style.display = 'none';
-            document.getElementById(check).style.display = 'block';
-            document.getElementById(error).style.display = 'none';
-        }
-    } else {
-        target.classList.remove('success');
-        target.classList.add('error');
-        document.getElementById(check).style.display = 'none';
-        document.getElementById(warning).style.display = 'block';
-        document.getElementById(error).style.display = 'block';
-    }
-}
-
-function onblurFunction(target, name) {
-    var warning = name + 'Warning';
-    var check = name + 'Check';
-    var error = name + 'Error';
-    if (target.value === '') {
-        target.classList.remove('success');
-        target.classList.add('error');
-        document.getElementById(check).style.display = 'none';
-        document.getElementById(warning).style.display = 'block';
-        document.getElementById(error).style.display = 'block';
-    }
-    if (name.toLowerCase() === 'cquestion') {
-        if (target.value.toLowerCase() === 'please choose') {
             target.classList.remove('success');
             target.classList.add('error');
             document.getElementById(check).style.display = 'none';
@@ -117,42 +97,36 @@ function onblurFunction(target, name) {
 }
 
 function selectChange(target) {
-    if (target.value === '1' || target.value === '2') {
-        document.getElementById('cSuggestText').value = '';
-        document.getElementById('cSuggestText').classList.remove('error');
-        document.getElementById('cSuggestText').classList.remove('success');
-        document.getElementById('cSuggestWarning').style.display = 'none';
+    document.getElementById('cSuggestText').value = '';
+    document.getElementById('cSuggestText').classList.remove('error');
+    document.getElementById('cSuggestText').classList.remove('success');
+    document.getElementById('cSuggestWarning').style.display = 'none';
+    document.getElementById('cSuggestError').style.display = 'none';
+    document.getElementById('cFeedbackText').value = '';
+    document.getElementById('cFeedbackText').classList.remove('error');
+    document.getElementById('cFeedbackText').classList.remove('success');
+    document.getElementById('cFeedbackWarning').style.display = 'none';
+    document.getElementById('cFeedbackError').style.display = 'none';
 
+    if (target.classList.contains('error')) {
+        if (target.value === '1' || target.value === '2' || target.value === '3') {
+            target.classList.add('success')
+            target.classList.remove('error')
+            document.getElementById('cQuestionWarning').style.display = 'none';
+            document.getElementById('cQuestionError').style.display = 'none';
+            document.getElementById('cQuestionCheck').style.display = 'block';
+        }
+    }
+    if (target.value === '1' || target.value === '2') {
         document.getElementById('cSuggestWrap').style.display = 'none';
         document.getElementById('cFeedbackWrap').style.display = 'block';
-        target.classList.add('success')
-        target.classList.remove('error')
-        document.getElementById('cQuestionWarning').style.display = 'none';
-        document.getElementById('cQuestionError').style.display = 'none';
-        document.getElementById('cQuestionCheck').style.display = 'block';
     } else if (target.value === '3') {
-        document.getElementById('cFeedbackText').value = '';
-        document.getElementById('cFeedbackText').classList.remove('error');
-        document.getElementById('cFeedbackText').classList.remove('success');
-        document.getElementById('cFeedbackWarning').style.display = 'none';
         document.getElementById('cSuggestWrap').style.display = 'block';
         document.getElementById('cFeedbackWrap').style.display = 'none';
-        target.classList.add('success')
-        target.classList.remove('error')
-        document.getElementById('cQuestionWarning').style.display = 'none';
-        document.getElementById('cQuestionError').style.display = 'none';
-        document.getElementById('cQuestionCheck').style.display = 'block';
+
     } else {
-        document.getElementById('cSuggestText').value = '';
-        document.getElementById('cSuggestText').classList.remove('error');
-        document.getElementById('cSuggestText').classList.remove('success');
         document.getElementById('cSuggestWrap').style.display = 'none';
         document.getElementById('cFeedbackWrap').style.display = 'block';
-        target.classList.add('error')
-        target.classList.remove('success')
-        document.getElementById('cQuestionWarning').style.display = 'block';
-        document.getElementById('cQuestionError').style.display = 'block';
-        document.getElementById('cQuestionCheck').style.display = 'none';
     }
 }
 
