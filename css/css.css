@@ -99,7 +99,8 @@ body {
     color: transparent;
 }
 
-select {
+select,
+input[type="submit"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
